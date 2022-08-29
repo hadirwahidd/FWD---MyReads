@@ -11,7 +11,7 @@ body,
   background: white;
 }
 
-/* main page */
+/* Main Page */
 
 .list-books-title {
   padding: 10px 0;
@@ -66,7 +66,7 @@ body,
   cursor: pointer;
 }
 
-/* search page */
+/* Search Page */
 
 .search-books-bar {
   position: fixed;
@@ -108,7 +108,7 @@ body,
   padding: 80px 10px 20px;
 }
 
-/* books grid */
+/* Books Grid */
 
 .books-grid {
   list-style-type: none;
@@ -166,7 +166,7 @@ body,
   cursor: pointer;
 }
 
-/* book cover */
+/* Book Cover */
 
 .book-cover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -176,4 +176,24 @@ body,
   padding: 20px 10px 0;
   text-align: center;
   font-size: 0.8em;
+}
+
+/* Not Found Page */
+
+.notfound {
+  text-align: center;
+  line-height: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: white;
+  background-color: #2a7d2d;
+  height: 713.5px;
+  padding: 170px;
+}
+
+h1 {
+  font-size: 80px;
+}
+
+h3 {
+  font-size: x-large;
 }
