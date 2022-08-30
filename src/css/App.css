@@ -183,15 +183,15 @@ body,
 .notfound {
   text-align: center;
   line-height: center;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family:'Times New Roman', Times, serif;
   color: white;
-  background-color: #2a7d2d;
+  background-color: #5175d0;
   height: 713.5px;
-  padding: 170px;
+  padding: 130px;
 }
 
 h1 {
-  font-size: 80px;
+  font-size: 100px;
 }
 
 h3 {
