@@ -24,7 +24,7 @@ const Book = ({ bookTitle, bookAuthors, ImageUrl }) => {
   )
 }
 
-Book.PropTypes = {
+Book.propTypes = {
   bookTitle: PropTypes.isRequired,
   bookAuthors: PropTypes.isRequired,
   ImageUrl: PropTypes.isRequired,
