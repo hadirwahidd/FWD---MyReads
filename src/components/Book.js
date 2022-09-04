@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Book = ({ bookTitle, bookAuthors, ImageUrl }) => {
   return (
     <div className="book">
@@ -21,5 +23,11 @@ const Book = ({ bookTitle, bookAuthors, ImageUrl }) => {
     </div>
   )
 }
+
+Book.PropTypes = {
+  bookTitle: PropTypes.isRequired,
+  bookAuthors: PropTypes.isRequired,
+  ImageUrl: PropTypes.isRequired,
+};
 
 export default Book;
