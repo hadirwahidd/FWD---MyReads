@@ -1,13 +1,16 @@
 import PropTypes from "prop-types";
 
-const Book = ({ bookTitle, bookAuthors, ImageUrl }) => {
+const Book = ({ bookTitle, bookAuthors, ImageUrl, Link }) => {
   return (
     <div className="book">
       <div className="book-top">
-        <div
-          className="book-cover"
-          style={{ width: 128, height: 193, backgroundImage: `url(${ImageUrl})` }}>
-        </div>
+        <a href={`${Link}`} target="_blank" rel="noreferrer">
+          <div
+            className="book-cover"
+            style={{ width: 128, height: 193, backgroundImage: `url(${ImageUrl})` }}>
+          </div>
+        </a>
+
         <div className="book-shelf-changer">
           <select>
             <option value="none" disabled>Move to...</option>
@@ -25,9 +28,9 @@ const Book = ({ bookTitle, bookAuthors, ImageUrl }) => {
 }
 
 Book.propTypes = {
-  bookTitle: PropTypes.isRequired,
-  bookAuthors: PropTypes.isRequired,
-  ImageUrl: PropTypes.isRequired,
+  bookTitle: PropTypes.string.isRequired,
+  bookAuthors: PropTypes.array.isRequired,
+  ImageUrl: PropTypes.string.isRequired,
 };
 
 export default Book;
