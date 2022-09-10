@@ -30,7 +30,7 @@ const SearchPage = ({ books }) => {
         <div className="search-books-input-wrapper">
           <input
             type="text"
-            placeholder="Search by title, author, or ISBN"
+            placeholder="Search by title"
             value={query}
             onChange={(event) => updateQuery(event.target.value)}
           />
@@ -41,7 +41,7 @@ const SearchPage = ({ books }) => {
         <ol className="books-grid">
           {showingBooks.map((book) => (
             <li key={book.id}>
-              <Book bookTitle={book.title} bookAuthors={book.authors} ImageUrl={book.imageLinks.thumbnail} />
+              <Book bookTitle={book.title} bookAuthors={book.authors} ImageUrl={book.imageLinks.thumbnail} Link={book.previewLink} />
             </li>
           ))}
         </ol>
