@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
-import BookShelfs from "./BookShelfs";
+import BookShelf from "./BookShelf";
 
-const MainPage = () => {
+const MainPage = ({ books }) => {
     return (
         <div className="list-books">
             <div className="list-books-title">
                 <h1>MyReads</h1>
             </div>
             <div className="list-books-content">
-                <BookShelfs bookshelfTitle1="Currently Reading" bookshelfTitle2="Want to Read" bookshelfTitle3="Read" />
+                <BookShelf shelf="currentlyReading" title="Currently Reading" books={books}/>
+                <BookShelf shelf="wantToRead" title="Want to Read" books={books}/>
+                <BookShelf shelf="read" title="Read" books={books}/>
             </div>
             <div className="open-search">
                 <Link to="/search">Add a book</Link>
