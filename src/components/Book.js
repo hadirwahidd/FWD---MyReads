@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const Book = ({ bookTitle, bookAuthors, ImageUrl, Link }) => {
+const Book = ({ shelf, updateShelf, bookTitle, bookAuthors, ImageUrl, Link }) => {
   return (
     <div className="book">
       <div className="book-top">
@@ -12,7 +12,10 @@ const Book = ({ bookTitle, bookAuthors, ImageUrl, Link }) => {
         </a>
 
         <div className="book-shelf-changer">
-          <select>
+          <select
+            defaultValue={shelf}
+            onChange={(event) => updateShelf(event.target.value)}
+          >
             <option value="none" disabled>Move to...</option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
@@ -29,8 +32,9 @@ const Book = ({ bookTitle, bookAuthors, ImageUrl, Link }) => {
 
 Book.propTypes = {
   bookTitle: PropTypes.string.isRequired,
-  bookAuthors: PropTypes.array.isRequired,
-  ImageUrl: PropTypes.string.isRequired,
+  bookAuthors: PropTypes.array,
+  ImageUrl: PropTypes.string,
+  Link: PropTypes.string.isRequired
 };
 
 export default Book;
