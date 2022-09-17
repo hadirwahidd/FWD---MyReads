@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Book from "./Book.js";
 import * as BooksAPI from "../utils/BooksAPI.js";
 
-const SearchPage = ({ books }) => {
+const SearchPage = ({ shelf, updateShelf }) => {
 
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -12,28 +12,31 @@ const SearchPage = ({ books }) => {
     setQuery(query);
   };
 
-  /*const clearQuery = () => {
-    updateQuery("");
-  };*/
+  const handleInput = async (event) => {
+    try {
+      const input = event.target.value;
+      updateQuery(input);
 
-  useEffect(() => {
-    const searchResults = async (qry) => {
-      const res = await BooksAPI.search(qry);
-      console.log(res);
-      setResults(res);
-    };
+      if (input !== "") {
+        const res = await BooksAPI.search(query);
+        if (res.error) {
+          setResults([]);
+        }
+        else {
+          setResults(res);
+        }
+      }
+      else {
+        setResults([]);
+      }
+    }
+    catch (err) {
+      console.log("error");
+    }
+  };
 
-    searchResults(query);
-  }, [query]);
-
-  console.log(results);
-
-  const showingResults =
-    query === "" || query !== {}
-      ? []
-      : results.filter((r) =>
-        r.title.toLowerCase().includes(query.toLowerCase())
-      );
+  const showingResults = results.filter((r) =>
+    r.title.toLowerCase().includes(query.toLowerCase()));
 
   return (
     <div className="search-books">
@@ -46,7 +49,7 @@ const SearchPage = ({ books }) => {
             type="text"
             placeholder="Search by title"
             value={query}
-            onChange={(event) => updateQuery(event.target.value)}
+            onChange={handleInput}
           />
         </div>
       </div>
@@ -55,25 +58,14 @@ const SearchPage = ({ books }) => {
         <ol className="books-grid">
           {showingResults.map((book) => (
             <li key={book.id}>
-              <Book bookTitle={book.title} bookAuthors={book.authors} ImageUrl={book.imageLinks.thumbnail} Link={book.previewLink} />
+              <Book shelf={shelf} updateShelf={(shelf) => updateShelf(book, shelf)}
+                bookTitle={book.title} bookAuthors={book.authors}
+                ImageUrl={book?.imageLinks?.thumbnail} Link={book.previewLink}
+              />
             </li>
           ))}
         </ol>
       </div>
-
-      {/*(showingBooks.length !== books.length && showingBooks.length !== 0) && (
-        <center>
-          <p>Now showing {showingBooks.length} of {books.length} books in the library</p>
-          <button onClick={clearQuery}>Show All</button>
-        </center>
-      )*/}
-
-      {/*showingBooks.length === 0 && (
-        <center>
-          <p>No results found</p>
-          <button onClick={clearQuery}>Show all books</button>
-        </center>
-      )*/}
     </div>
   )
 }
