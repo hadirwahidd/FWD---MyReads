@@ -13,7 +13,7 @@ On the main page, there are 3 different shelves, each containing a number of boo
   - Want to Read
   - Read
 
-Users will not only be able to view which books are in which shelf, but they'll also be able to move books to different shelves.
+Users will not only be able to view which books are in which shelf, but they'll also be able to move books to different shelves and preview each book.
 
 The main page also have a link to a search page, where users can search a database to add more books to the library.
 This link takes users to a page with a search bar where they can type any name of a book.
