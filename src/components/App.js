@@ -19,19 +19,22 @@ const App = () => {
     getBooks();
   }, []);
 
-  /*const updateBooks = async (book, shelf) => {
+  const updateBooks = async (book, shelf) => {
     await BooksAPI.update(book, shelf);
   };
 
   const updateShelf = async (book, shelf) => {
-    updateBooks(book, shelf);
-  };*/
+    book.shelf = shelf;
+    updateBooks(book, shelf).then(() => {
+      setBooks([ ...books.filter((b) => b.id !== book.id), book]);
+    });
+  };
 
   return (
     <div className="app">
       <Routes>
-        <Route exact path="/" element={<MainPage books={books} />} />
-        <Route path="/search" element={<SearchPage books={books} />} />
+        <Route exact path="/" element={<MainPage books={books} updateShelf={updateShelf}/>} />
+        <Route path="/search" element={<SearchPage shelf="none" updateShelf={updateShelf}/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
