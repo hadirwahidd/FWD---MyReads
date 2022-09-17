@@ -34,7 +34,7 @@ const App = () => {
     <div className="app">
       <Routes>
         <Route exact path="/" element={<MainPage books={books} updateShelf={updateShelf}/>} />
-        <Route path="/search" element={<SearchPage shelf="none" updateShelf={updateShelf}/>} />
+        <Route path="/search" element={<SearchPage books={books} updateShelf={updateShelf}/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
