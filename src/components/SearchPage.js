@@ -5,8 +5,6 @@ import * as BooksAPI from "../utils/BooksAPI.js";
 
 const SearchPage = ({ books, updateShelf }) => {
 
-  console.log(books);
-
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -26,38 +24,19 @@ const SearchPage = ({ books, updateShelf }) => {
           setResults([]);
         }
         else {
-          console.log(res);
-          const result = res.map((b) => {
-            books.find((book) => {
-              if (b.id === book.id) {
-                b.shelf = book.shelf;
+          for (let i = 0; i < res.length; i++) {
+            for (let j = 0; j < books.length; j++) {
+              if (res[i].title === books[j].title) {
+                res[i].shelf = books[j].shelf;
+                break;
               }
               else {
-                b.shelf = "none";
+                res[i].shelf = "none";
               };
-            });
-          });
-          console.log(result);
-          /*const bookshelf = books.find(b => b.id === book.id);
-            if (bookshelf) {
-              book.shelf = bookshelf.shelf;
-            }
-            else {
-              book.shelf = "none";
-            };*/
-            
-          /*for (let i = 0; i < res.length; i++) {
-            console.log(res[i].id);
-            console.log(books[i].id);
-            if (res[i].id === books[i].id) {
-              console.log(res[i].id);
-              res[i].shelf = books[i].shelf;
-            }
-            else {
-              res[i].shelf = "none";
             };
-          };*/
+          };
           setResults(res);
+          console.log(res);
         }
       }
       else {
@@ -90,22 +69,14 @@ const SearchPage = ({ books, updateShelf }) => {
 
       <div className="search-books-results">
         <ol className="books-grid">
-          {showingResults.map((book) => {
-            /*const bookshelf = books.find(b => b.id === book.id);
-            if (bookshelf) {
-              book.shelf = bookshelf.shelf;
-            }
-            else {
-              book.shelf = "none";
-            };*/
-            return (
+          {showingResults.map((book) => (
               <li key={book.id}>
                 <Book shelf={book.shelf} updateShelf={(shelf) => updateShelf(book, shelf)}
                   bookTitle={book.title} bookAuthors={book.authors}
                   ImageUrl={book?.imageLinks?.thumbnail} Link={book.previewLink}
                 />
-              </li>);
-          })}
+              </li>
+          ))};
         </ol>
       </div>
     </div>
